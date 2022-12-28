@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/login.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/panel_admin.css') }}">
+</head>
+
+<body>
+    <a href="/"><div id="main"></div></a>
+
+    <div class="login_main">
+        {% if status == '1' %}
+            Все  игры
+        {% elif status == '2' %}
+            Изменить
+        {% else %}
+            Добавить
+        {% endif %}
+    </div>
+
+    {% if BlockAddTrue == '1' %}
+        <div class="inputTrue">Данные были созданы!</div>
+    {% endif %}
+
+    {% if delete == '1' %}
+        <div class="inputTrue">Данные удалены!</div>
+    {% endif %}
+
+    {% if change == '1' %}
+        <div class="inputTrue">Данные изменены!</div>
+    {% endif %}
+
+    {% if out != '1' %}
+        <form action="/panel_admin" method="post">
+            <input class="add_button" type="submit" value="">
+            <input type="hidden" name="status" value="4">
+        </form>
+    {% endif %}
+
+    {% if out == '1' %}
+        <form action="/panel_admin" method="post">
+            <input class="add_button" id="add_button_out" type="submit" value="">
+            <input type="hidden" name="status" value="1">
+        </form>
+    {% endif %}
+
+    <div id="head"></div>
+
+    {% if status == '1' %}
+        {% for value in games_data %}
+            <div class="admin_block_game">
+                <div class="admin_name">{{ value[1] }}</div>
+                <form action="/panel_admin" method="post">
+                    <input class="admin_input" type="submit" value="Изменить">
+                    <input type="hidden" name="id" value="{{ value[0] }}">
+                    <input type="hidden" name="status" value="2">
+                </form>
+                <form action="/panel_admin" method="post">
+                    <input class="admin_input" type="submit" value="Удалить">
+                    <input type="hidden" name="id" value="{{ value[0] }}">
+                    <input type="hidden" name="status" value="3">
+                </form>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    {% if status == '4' %}
+        <div id="window">
+            <form action="/panel_admin" method="POST" enctype="multipart/form-data">
+                <div class="fields"> Название игры </div>
+                <input type="text" name="name">
+
+                <div class="fields"> Стоимость </div>
+                <input type="text" name="cost">
+
+                <div class="fields"> Описание игры </div>
+                <textarea name="text"></textarea>
+
+                <div class="fields"> Картинка </div>
+                <input type="file" id="file" name="file">
+
+                <input type="hidden" name="status" value="5">
+
+                <input type="submit" id="admin_submit" value="Создать запись">
+            </form>
+        </div>
+    {% endif %}
+
+    {% if status == '2' %}
+        <div id="window">
+            <form action="/panel_admin" method="POST" enctype="multipart/form-data">
+                <div class="fields"> Название игры </div>
+                <input type="text" name="name" value="{{ game_data[1] }}">
+
+                <div class="fields"> Стоимость </div>
+                <input type="text" name="cost" value="{{ game_data[3] }}">
+
+                <div class="fields"> Описание игры </div>
+                <textarea name="text">{{ game_data[2] }}</textarea>
+
+                <div class="fields"> Картинка </div>
+                <input type="file" id="file" name="file">
+
+                <input type="hidden" name="status" value="6">
+
+                <input type="hidden" name="id" value="{{ game_data[0] }}">
+
+                <input type="submit" id="admin_submit" value="Изменить запись">
+            </form>
+        </div>
+    {% endif %}
+
+</body>

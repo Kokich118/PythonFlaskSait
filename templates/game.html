@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/game.css') }}">
+</head>
+<body>
+    <a href="/"><div id="main"></div></a>
+
+    {% if BlockTrue == 1 %}
+        <div class="inputTrue">Комментарий отправлен!</div>
+    {% endif %}
+
+    {% if BlockNull == 1 %}
+        <div class="inputNull">Вы не вошли!</div>
+    {% endif %}
+
+    <div class="container">
+        <div id="head"></div>
+
+        <div id="block_game">
+            <img src="../static/image/games/{{ value[4] }}">
+            <div id="game_text">{{ value[2] }}</div>
+        </div>
+
+        <div id="block_buy">КУПИТЬ</div>
+
+        <hr style="margin-top: 2%; color: rgb(230, 219, 219);">
+
+        <form action="/game" method="post">
+            <div class="text_input_comment">
+                <div class="input_name">Оставить комментарий</div>
+                <select name="grade">
+                    <option value="5" selected>5</option>
+                    <option value="4">4</option>
+                    <option value="3">3</option>
+                    <option value="2">2</option>
+                    <option value="1">1</option>
+                </select>
+
+                <label>
+                    <textarea name="text" maxlength="500"></textarea>
+                </label>
+
+                <input type="hidden" value="{{ value[0] }}" name="id">
+                <input type="submit" value=">" class="submit_comment">
+            </div>
+        </form>
+    </div>
+
+    {% for value in comments %}
+    <div class="comment">
+        <div class="grade">
+            {% if value[2] == 1 %}
+                <p style="color: #ff0013">1</p>
+            {% elif value[2] == 2 %}
+                <p style="color: #ff5040">2</p>
+            {% elif value[2] == 3 %}
+                <p style="color: #ff870a">3</p>
+            {% elif value[2] == 4 %}
+                <p style="color: #fffe00">4</p>
+            {% elif value[2] == 5 %}
+                <p style="color: #00ff0a">5</p>
+            {% endif %}
+        </div>
+        <div class="user_login">{{ value[0] }}</div>
+        <p class="text_comment">{{ value[1] }}</p>
+    </div>
+    {% endfor %}
+
+</body>
+</html>

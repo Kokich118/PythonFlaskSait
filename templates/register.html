@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/login.css') }}">
+</head>
+<body>
+    <a href="/"><div id="main"></div></a>
+
+    {% if BlockError == 1 %}
+            <div class="inputNull">Такой логин уже есть!</div>
+    {% endif %}
+
+    {% if BlockError == 2 %}
+            <div class="inputNull">Разные пароли</div>
+    {% endif %}
+
+    <div class="container">
+        <div id="head"></div>
+
+        <div id="window">
+            <form action="/register" method="post">
+                <div class="fields" id="input_text">РЕГИСТРАЦИЯ</div>
+
+                <div class="fields reg_block">ЛОГИН</div>
+                <input type="login" name="login">
+
+                <div class="fields reg_block">ПАРОЛЬ</div>
+                <input type="password" name="password">
+
+                <div class="fields reg_block">ПОВТОРИТЕ ПАРОЛЬ</div>
+                <input type="password" name="password2">
+
+                <div class="fields reg_block">EMAIL</div>
+                <input type="email" name="mail">
+
+                <input class="submit" id="submit_register" type="submit" value="РЕГИСТРАЦИЯ">
+            </form>
+        </div>
+
+        <a href="/input"><div id="register_button"><p id="register_text">ВХОД</p></div></a>
+    </div>
+</body>
+</html>

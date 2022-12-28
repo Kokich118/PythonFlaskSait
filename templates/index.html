@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/card.css') }}">
+    <title>Document</title>
+</head>
+<body>
+    {% if admin == 1 %}
+        <form action="/panel_admin" method="post">
+            <input type="hidden" name="status" value="1">
+            <input type="submit" id="instrument" value="">
+        </form>
+    {% endif %}
+
+    <a href="/"><div id="main"></div></a>
+
+    {% if Output == 1 %}
+        <div class="login_main">{{ name }}</div>
+    {% endif %}
+
+    {% if Output == 0 %}
+        <a href="/input"><div id="user">
+            <p id="user_text">ВОЙТИ</p>
+        </div></a>
+    {% endif %}
+
+    {% if Output == 1 %}
+        <a href="/?OUT=1"><div id="user">
+            <p id="user_text">ВЫЙТИ</p>
+        </div></a>
+    {% endif %}
+
+    {% if BlockTrue == 1 %}
+        <div class="inputTrue">Вы вошли!</div>
+    {% endif %}
+
+    {% if BlockTrue == 2 %}
+        <div class="inputTrue">Вы зарегестрированы!</div>
+    {% endif %}
+
+    <div class="container">
+        <div id="head"></div>
+
+        {% for value in game_data %}
+            <a href="/game?id={{ value[0] }}">
+                <div class="card">
+                    <div class="card__front">
+                        <div class="price">{{value[3]}}</div>
+                        <img class="card_img" src="../static/image/games/{{ value[4] }}" alt="" width="100%" height="100%">
+                    </div>
+                    <div class="card__back">
+                        <div class="name">{{ value[1] }}</div>
+                        <div class="title">
+                            {{ value[2][0:121] }}
+                            ...
+                        </div>
+                        <div class="price">{{ value[3] }}</div>
+                        <img class="card_img card_img_back" src="../static/image/games/{{ value[4] }}" alt="" width="100%" height="100%">
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+</body>
+</html>

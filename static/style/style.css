@@ -1,0 +1,116 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(60, 14, 135);
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+.container {
+    margin-left: 5%;
+    width: 90%;
+    height: 100%;
+}
+
+#head {
+    width: 100%;
+    height: 10%;
+}
+
+#main {
+    position: fixed;
+    width: 20%;
+    height: 10%;
+    margin-left: 40%;
+    background-color: azure;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    z-index: 100;
+    border-bottom: 2px solid rgb(30, 29, 29);
+    border-left: 2px solid rgb(30, 29, 29);
+    border-right: 2px solid rgb(30, 29, 29);
+}
+
+#main:hover {
+    background-color: rgb(30, 29, 29);
+}
+
+#user {
+    position: fixed;
+    width: 10%;
+    height: 10%;
+    margin-left: 90%;
+    border-bottom-left-radius: 40%;
+    background-color: azure;
+    text-align: center;
+    font-size: 175%;
+    color: rgb(30, 29, 29);
+    z-index: 100;
+}
+
+#user_text {
+    margin-top:10%;
+}
+
+#user:hover {
+    background-color: rgb(30, 29, 29);
+    color: azure;
+}
+
+.inputNull {
+    position: absolute;
+    width: 10%;
+    height: 6%;
+    font-size: 150%;
+    text-align: center;
+    color: #fffef0;
+    background-color: #ff5040;
+    border-radius: 15%;
+    margin-top: 0.5%;
+    margin-left: 28%
+}
+
+.inputTrue {
+    position: absolute;
+    width: 10%;
+    height: 6%;
+    font-size: 150%;
+    text-align: center;
+    color: #fffef0;
+    background-color: #52dc4c;
+    border-radius: 15%;
+    margin-top: 0.5%;
+    margin-left: 28%
+}
+
+#instrument {
+    position: fixed;
+    width: 90px;
+    height: 90px;
+    border-radius: 100%;
+    margin-left: 1%;
+    margin-top: 0.2%;
+    background: url("../image/w512h5121377940192185096settingsstreamline.png");
+    background-size: 100%;
+    border: none;
+    background-color: azure;
+}
+
+#instrument:hover {
+    background-color: rgb(225, 190, 12);
+}
+
+.login_main {
+    position: fixed;
+    font-size: 200%;
+    margin-left: 60%;
+    width: 30%;
+    text-align: center;
+    color: azure;
+    margin-top: 0.5%;
+}

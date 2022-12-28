@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/login.css') }}">
+</head>
+<body>
+    <a href="/"><div id="main"></div></a>
+
+    {% if login == 1 %}
+        <div class="inputNull">Логин или пароль не верны</div>
+    {% endif %}
+
+    <div class="container">
+        <div id="head"></div>
+
+        <div id="window">
+            <form action="/input" method="post">
+                <div class="fields" id="input_text">ВХОД</div>
+
+                <div class="fields">ЛОГИН</div>
+                <input type="login" name="login">
+
+                <div class="fields">ПАРОЛЬ</div>
+                <input type="password" name="password">
+
+                <input class="submit" type="submit" value="ВОЙТИ">
+            </form>
+        </div>
+
+        <a href="/register"><div id="register_button"><p id="register_text">Регистрация</p></div></a>
+    </div>
+</body>
+</html>
